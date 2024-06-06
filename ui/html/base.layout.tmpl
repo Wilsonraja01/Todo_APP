@@ -1,0 +1,25 @@
+{{define "base"}}
+    <!doctype html>
+    <html lang='en'>
+        <head>
+            <link rel='stylesheet' href='/static/css/main.css'>
+            <link rel='shortcut icon' href='/static/img/favicon.ico' type='image/x-icon'/>
+
+        <title>ToDo </title>
+            
+        </head>
+        <body>
+            <header>
+                <h1><a href='/'>TODO</a></h1>
+            </header>
+        <section>
+            
+            {{template "body" .}}
+        </section>
+        <footer>
+           <p><a class="site" href="https://wilsonraja01.github.io/personal-portfolio/">By Wilson</a></p>
+        </footer>
+        {{/*<script src="/static/js/main.js" type="text/javascript"></script>*/}}
+        </body>
+    </html>
+{{end}}

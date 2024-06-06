@@ -1,0 +1,43 @@
+{{template "base" .}}
+
+{{define "body"}}
+  <h2> Todo List </h2>
+  {{if .Flash}}
+                <div class='flash'>
+                <h3>{{.Flash}}</h3>
+                </div>
+            {{end}}
+    <form action="/addTask" method="post">
+        <input type="text" name="TaskName" placeholder="Task">
+        <input type="text" name="Details" placeholder="Details">
+        <input type="submit" value="Add">
+    </form>
+
+    
+    <ul>
+        {{range .Tasks}}
+            <li>{{.Name}}</li>
+            <li>{{.Details}}</li>
+           <form action="/deleteTask?id={{.ID}}" method="post">
+                <input type="hidden" name="id" value={{.ID}}>
+                <input type="submit" value="Delete">
+            </form>
+            <div id="updateForm{{.ID}}" style="display: none;">
+                <form action="/updateTask?id={{.ID}}" method="post">
+                    <input type="hidden" name="id" value={{.ID}}>
+                    <input type="text" name="TaskName" placeholder="Name">
+                    <input type="text" name="Details" placeholder="Details">
+                    <input type="submit" value="Update">
+                </form>
+            </div>
+            <button onclick="showUpdateForm('{{.ID}}')">Click to Update</button>
+            <br />
+        {{end}}
+    </ul>
+{{end}}
+<script>
+    function showUpdateForm(id) {
+        var updateForm = document.getElementById("updateForm" + id);
+        updateForm.style.display = "block";
+    }
+</script>
